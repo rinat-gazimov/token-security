@@ -11,8 +11,10 @@ import ru.springboot.app.model.Role;
 import ru.springboot.app.model.State;
 import ru.springboot.app.model.Token;
 import ru.springboot.app.model.User;
+import ru.springboot.app.repository.TokenStatusRepository;
 import ru.springboot.app.repository.TokensRepository;
 import ru.springboot.app.repository.UserRepository;
+import ru.springboot.app.utils.DataConstants;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -31,6 +33,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private TokenStatusRepository tokenStatusRepository;
+
 
     @Override
     public TokenDTO login(UserDTO userDTO) {
@@ -43,6 +48,7 @@ public class UserServiceImpl implements UserService {
                 Token token = new Token();
                 token.setUser(user);
                 token.setValue(RandomStringUtils.random(10, true, true));
+                token.setTokenStatus(tokenStatusRepository.findOne(DataConstants.TokenStatus.ACTIVE.getValue()));
 
                 tokensRepository.save(token);
                 return from(token);

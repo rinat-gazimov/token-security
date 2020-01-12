@@ -1,23 +1,15 @@
 package ru.springboot.app.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.UUID;
 
+
 @Entity
-@Table(name = "token", schema = "public")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-public class Token extends IdObject<UUID> {
+@Table(name = "token_status", schema = "public")
+public class TokenStatus extends IdObject<UUID> {
 
     @Id
     @Column(name = ID)
@@ -34,16 +26,8 @@ public class Token extends IdObject<UUID> {
     @Column(name = CHANGED, nullable = false)
     private Date changed;
 
-    @Column(name = "VALUE")
-    private String value;
-
-    @ManyToOne
-    @JoinColumn(name = "USER_ID", nullable = false)
-    private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "TOKEN_STATUS_ID", nullable = false)
-    private TokenStatus tokenStatus;
+    @Column(name = "name")
+    private String name;
 
     @Override
     public UUID getId() {
@@ -75,27 +59,11 @@ public class Token extends IdObject<UUID> {
         this.changed = changed;
     }
 
-    public String getValue() {
-        return value;
+    public String getName() {
+        return name;
     }
 
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public TokenStatus getTokenStatus() {
-        return tokenStatus;
-    }
-
-    public void setTokenStatus(TokenStatus tokenStatus) {
-        this.tokenStatus = tokenStatus;
+    public void setName(String name) {
+        this.name = name;
     }
 }
