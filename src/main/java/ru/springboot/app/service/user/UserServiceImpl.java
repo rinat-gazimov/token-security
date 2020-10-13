@@ -3,10 +3,12 @@ package ru.springboot.app.service.user;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.springboot.app.dto.TokenDTO;
 import ru.springboot.app.dto.UserDTO;
+import ru.springboot.app.dto.UserDetailsDTO;
 import ru.springboot.app.model.Role;
 import ru.springboot.app.model.State;
 import ru.springboot.app.model.Token;
@@ -68,5 +70,15 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
 
         return user.getId();
+    }
+
+    @Override
+    public UserDetailsDTO userDetails() {
+
+        if (SecurityContextHolder.getContext().getAuthentication() != null && SecurityContextHolder.getContext().getAuthentication().getDetails() != null) {
+            return new UserDetailsDTO(SecurityContextHolder.getContext().getAuthentication());
+        }
+
+        return null;
     }
 }

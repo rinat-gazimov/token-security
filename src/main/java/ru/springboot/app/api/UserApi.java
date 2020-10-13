@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.springboot.app.dto.TokenDTO;
 import ru.springboot.app.dto.UserDTO;
+import ru.springboot.app.dto.UserDetailsDTO;
 import ru.springboot.app.model.User;
 import ru.springboot.app.service.user.UserService;
 
@@ -28,6 +29,17 @@ public class UserApi {
     @PostMapping("/register")
     public ResponseEntity<UUID> register(@RequestBody  UserDTO userDTO) {
         return ResponseEntity.ok(userService.register(userDTO));
+    }
+
+    @PostMapping("/info")
+    public ResponseEntity<UserDetailsDTO> info() {
+        UserDetailsDTO dto = userService.userDetails();
+//        if (dto != null) {
+//            return new ResponseEntity<UserDetailsDTO>(dto, HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<ErrorResponse>(new ErrorResponse("common.NOT_AUTHORIZED", messageSource.getMessage("common.NOT_AUTHORIZED", null, LocaleHolder.getLocale())), HttpStatus.UNAUTHORIZED);
+//        }
+        return null;
     }
 
 

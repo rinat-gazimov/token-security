@@ -1,12 +1,9 @@
 package ru.springboot.app.model;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "user", schema = "public")
@@ -45,17 +42,14 @@ public class User extends IdObject<UUID> {
     @Column(name = "OPEN_PASS")
     private String openPass;
 
-    @Column(name = "ACTIVE")
-    private boolean active;
-
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
-    @Enumerated(value = EnumType.STRING)
-    private State state;
-
     @OneToMany(mappedBy = "user")
     List<Token> tokens;
+
+    @Enumerated(value = EnumType.STRING)
+    private State state;
 
     @Override
     public UUID getId() {
@@ -127,15 +121,6 @@ public class User extends IdObject<UUID> {
         this.password = password;
     }
 
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-
     public String getOpenPass() {
         return openPass;
     }
@@ -144,12 +129,12 @@ public class User extends IdObject<UUID> {
         this.openPass = openPass;
     }
 
-    public Role getRole() {
-        return role;
+    public List<Token> getTokens() {
+        return tokens;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setTokens(List<Token> tokens) {
+        this.tokens = tokens;
     }
 
     public State getState() {
@@ -160,11 +145,11 @@ public class User extends IdObject<UUID> {
         this.state = state;
     }
 
-    public List<Token> getTokens() {
-        return tokens;
+    public Role getRole() {
+        return role;
     }
 
-    public void setTokens(List<Token> tokens) {
-        this.tokens = tokens;
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

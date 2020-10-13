@@ -1,11 +1,6 @@
 package ru.springboot.app.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,10 +8,6 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "token", schema = "public")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Token extends IdObject<UUID> {
 
     @Id
