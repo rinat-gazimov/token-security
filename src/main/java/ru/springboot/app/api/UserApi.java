@@ -31,15 +31,14 @@ public class UserApi {
         return ResponseEntity.ok(userService.register(userDTO));
     }
 
-    @PostMapping("/info")
-    public ResponseEntity<UserDetailsDTO> info() {
+    @GetMapping("/info")
+    public ResponseEntity info() {
         UserDetailsDTO dto = userService.userDetails();
-//        if (dto != null) {
-//            return new ResponseEntity<UserDetailsDTO>(dto, HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<ErrorResponse>(new ErrorResponse("common.NOT_AUTHORIZED", messageSource.getMessage("common.NOT_AUTHORIZED", null, LocaleHolder.getLocale())), HttpStatus.UNAUTHORIZED);
-//        }
-        return null;
+        if (dto != null) {
+            return new ResponseEntity<>(dto, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
     }
 
 

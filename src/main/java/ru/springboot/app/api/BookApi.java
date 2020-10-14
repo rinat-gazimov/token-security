@@ -20,7 +20,7 @@ public class BookApi {
     @Autowired
     private BookService bookService;
 
-    @PreAuthorize("hasRole( 'ADMIN') or hasRole('USER')")
+//    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/book")
     public ResponseEntity getBooks() {
 
