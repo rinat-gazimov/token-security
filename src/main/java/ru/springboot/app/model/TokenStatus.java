@@ -4,20 +4,15 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.UUID;
 
 
 @Entity
 @Table(name = "token_status", schema = "public")
-public class TokenStatus extends IdObject<UUID> {
+public class TokenStatus extends IdObject<Long> {
 
     @Id
-    @Column(name = ID)
-    @Access(AccessType.PROPERTY)
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @org.hibernate.annotations.Type(type = "pg-uuid")
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @Column(name = CREATED, nullable = false)
     private Date created;
@@ -30,12 +25,12 @@ public class TokenStatus extends IdObject<UUID> {
     private String name;
 
     @Override
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
     @Override
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

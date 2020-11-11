@@ -1,11 +1,19 @@
 package ru.springboot.app.dto;
 
+import lombok.Getter;
+import lombok.Setter;
 import ru.springboot.app.model.Book;
 
+
+@Getter @Setter
 public class BookDTO {
 
+    private Long bookId;
     private String name;
     private String authorName;
+
+    public BookDTO() {
+    }
 
     public BookDTO(String name, String authorName) {
         this.name = name;
@@ -15,22 +23,7 @@ public class BookDTO {
     public BookDTO (Book book) {
         this.name = book.getName();
         this.authorName = book.getAuthorName();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAuthorName() {
-        return authorName;
-    }
-
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
+        this.bookId = book.getId();
     }
 
 }

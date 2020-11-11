@@ -7,15 +7,11 @@ import java.util.*;
 
 @Entity
 @Table(name = "user", schema = "public")
-public class User extends IdObject<UUID> {
+public class User extends IdObject<Long> {
 
     @Id
-    @Column(name = ID)
-    @Access(AccessType.PROPERTY)
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @org.hibernate.annotations.Type(type = "pg-uuid")
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @Column(name = CREATED, nullable = false)
     private Date created;
@@ -52,12 +48,12 @@ public class User extends IdObject<UUID> {
     private State state;
 
     @Override
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
     @Override
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

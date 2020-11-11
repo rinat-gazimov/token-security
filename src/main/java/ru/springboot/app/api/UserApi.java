@@ -12,7 +12,6 @@ import ru.springboot.app.dto.UserDetailsDTO;
 import ru.springboot.app.model.User;
 import ru.springboot.app.service.user.UserService;
 
-import java.util.UUID;
 
 @Controller
 //@RequestMapping("/app/user")
@@ -27,7 +26,7 @@ public class UserApi {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<UUID> register(@RequestBody  UserDTO userDTO) {
+    public ResponseEntity<Long> register(@RequestBody  UserDTO userDTO) {
         return ResponseEntity.ok(userService.register(userDTO));
     }
 

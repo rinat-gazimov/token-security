@@ -6,10 +6,9 @@ import ru.springboot.app.model.Token;
 import ru.springboot.app.model.User;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Repository
-public interface TokensRepository extends CrudRepository<Token, UUID> {
+public interface TokensRepository extends CrudRepository<Token, Long> {
 
     Optional<Token> findOneByValue(String value);
 

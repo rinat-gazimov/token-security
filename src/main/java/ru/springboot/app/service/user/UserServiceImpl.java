@@ -19,7 +19,6 @@ import ru.springboot.app.repository.UserRepository;
 import ru.springboot.app.utils.DataConstants;
 
 import java.util.Optional;
-import java.util.UUID;
 
 import static ru.springboot.app.dto.TokenDTO.from;
 
@@ -59,7 +58,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UUID register(UserDTO userDTO) {
+    public Long register(UserDTO userDTO) {
 
         User user = new User();
         user.setEmail(userDTO.getEmail());

@@ -9,14 +9,13 @@ import ru.springboot.app.dto.UserDTO;
 import ru.springboot.app.dto.UserDetailsDTO;
 import ru.springboot.app.repository.TokensRepository;
 
-import java.util.UUID;
 
 @Service
 public interface UserService {
 
     TokenDTO login(UserDTO userDTO);
 
-    UUID register(UserDTO userDTO);
+    Long register(UserDTO userDTO);
 
     UserDetailsDTO userDetails();
 }
